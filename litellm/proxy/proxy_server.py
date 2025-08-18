@@ -6170,7 +6170,7 @@ async def get_all_team_and_direct_access_models(
 
     user_teams: Optional[Union[List[str], Literal["*"]]] = None
     direct_access_models: List[str] = []
-    if user_api_key_dict.user_role == LitellmUserRoles.PROXY_ADMIN:
+    if user_api_key_dict.user_role in [LitellmUserRoles.PROXY_ADMIN, LitellmUserRoles.PROXY_ADMIN_VIEW_ONLY]:
         user_teams = "*"
         direct_access_models = llm_router.get_model_ids(
             exclude_team_models=True
